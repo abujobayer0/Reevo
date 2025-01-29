@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.10.0",
+    "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^3.10.0",
     "@prisma/client": "^6.2.1",
     "@radix-ui/react-accordion": "^1.2.2",
@@ -43,6 +44,7 @@
     "@radix-ui/react-toggle-group": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.7",
     "@tanstack/react-query": "^5.64.2",
+    "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",
@@ -57,6 +59,7 @@
     "react-day-picker": "8.10.1",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
+    "react-redux": "^9.2.0",
     "react-resizable-panels": "^2.1.7",
     "recharts": "^2.15.0",
     "sonner": "^1.7.2",
