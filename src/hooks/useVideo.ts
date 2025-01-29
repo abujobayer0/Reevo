@@ -1,4 +1,4 @@
-import { createCommentSchema } from "@/components/global/comment-form/schema";
+import { createCommentSchema } from "@/components/comment-form/schema";
 import { useMutationData } from "./useMutationData";
 import { useQueryData } from "./useQueryData";
 import useZodForm from "./useZodForm";
