@@ -24,17 +24,22 @@ const VideoPreview = ({ videoId }: Props) => {
   });
 
   const { data: video, status, author } = data as VideoProps;
-  if (status !== 200) router.push("/");
+
+  React.useEffect(() => {
+    if (status !== 200) {
+      router.push("/");
+    }
+  }, [status, router]);
 
   const daysAgo = Math.floor(
-    (new Date().getTime() - video.createdAt.getTime()) / (24 * 60 * 60 * 1000)
+    (new Date().getTime() - video?.createdAt.getTime()) / (24 * 60 * 60 * 1000)
   );
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 lg:py-10 overflow-y-auto gap-5">
       <div className="flex flex-col lg:col-span-2 gap-y-10">
         <div className="flex gap-x-5 items-start justify-between">
-          <h2 className="text-white text-4xl font-bold">{video.title}</h2>{" "}
+          <h2 className="text-white text-4xl font-bold">{video?.title}</h2>{" "}
           {/* {author ? (
             <EditVideo
               videoId={videoId}
@@ -47,7 +52,7 @@ const VideoPreview = ({ videoId }: Props) => {
         </div>
         <span className="flex gap-x-3 mt-2">
           <p className="text-[#9D9D9D] capitalize">
-            {video.User?.firstname} {video.User?.lastname}
+            {video?.User?.firstname} {video?.User?.lastname}
           </p>
           <p className="text-[#707070]">
             {daysAgo === 0 ? "Today" : `${daysAgo}d ago`}
@@ -55,13 +60,13 @@ const VideoPreview = ({ videoId }: Props) => {
         </span>
         <video
           preload="metadata"
-          className="w-full aspect-video opacity-50 rounded-xl"
+          className="w-full aspect-video opacity-50 !z-0 rounded-xl"
           controls
         >
           {/* <source
             src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${video.source}#1`}
           /> */}
-          <source src={`${video.source}`} />
+          <source src={`${video?.source}`} />
         </video>
       </div>
       <div className="lg:col-span-1 flex flex-col gap-y-16">
@@ -72,10 +77,10 @@ const VideoPreview = ({ videoId }: Props) => {
             videoId={videoId}
           />
           <RichLink
-            description={truncateString(video.description as string, 150)}
+            description={truncateString(video?.description as string, 150)}
             id={videoId}
-            source={video.source}
-            title={video.title as string}
+            source={video?.source}
+            title={video?.title as string}
           />
           <Download className="text-[#4d4c4c]" />
         </div>
@@ -86,12 +91,12 @@ const VideoPreview = ({ videoId }: Props) => {
           >
             <AiTools
               videoId={videoId}
-              trial={video.User?.trial!}
-              plan={video.User?.subscription?.plan!}
+              trial={video?.User?.trial!}
+              plan={video?.User?.subscription?.plan!}
             />
-            <VideoTranscript transcript={video.summery!} />
+            <VideoTranscript transcript={video?.summery!} />
             <Activities
-              author={video.User?.firstname as string}
+              author={video?.User?.firstname as string}
               videoId={videoId}
             />
           </TabMenu>
@@ -111,7 +116,7 @@ const VideoPreview = ({ videoId }: Props) => {
             )} */}
         </div>
         <p className="text-[#9D9D9D] text-lg text-medium">
-          {video.description}
+          {video?.description}
         </p>
       </div>
     </div>

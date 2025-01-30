@@ -9,20 +9,20 @@ type Props = {};
 
 const InfoBar = (props: Props) => {
   return (
-    <header className="pl-20 md:pl-[265px] fixed p-4 w-full flex items-center justify-between gap-4">
-      <div className="flex gap-4 justify-center items-center border-2 rounded-full px-4 w-full max-w-lg">
+    <header className="pl-20 md:pl-[265px] backdrop-blur-lg !z-10 bg-black/0 fixed p-4 w-full flex items-center justify-between gap-4">
+      <div className="flex gap-4 justify-center items-center border-2 rounded-full px-4 w-full max-w-lg bg-white/20 backdrop-blur-md">
         <Search size={25} className="text-[#707070]" />
         <Input
-          className="bg-transparent border-none !placeholder-neutral-500"
+          className="bg-transparent border-none !outline-none !ring-0 !placeholder-neutral-500"
           placeholder="Search for people, projects, tags & folders"
         />
       </div>
       <div className="flex items-center gap-4">
-        <Button className="bg-[#9D9D9D] flex items-center gap-2">
+        <Button className="bg-[#9D9D9D] flex items-center gap-2 hover:bg-[#6d6d6d] transition duration-200">
           <UploadIcon size={20} />{" "}
           <span className="flex items-center gap-2">Upload</span>
         </Button>
-        <Button className="bg-[#9D9D9D] flex items-center gap-2">
+        <Button className="bg-[#9D9D9D] flex items-center gap-2 hover:bg-[#6d6d6d] transition duration-200">
           <VideoRecorderIcon />
           <span className="flex items-center gap-2">Record</span>
         </Button>
