@@ -25,7 +25,7 @@ const Folder = ({ id, name, optimistic, count }: Props) => {
   const Rename = () => setOnRename(true);
   const Renamed = () => setOnRename(false);
 
-  //optimistic
+  // Optimistic update
   const { mutate, isPending } = useMutationData(
     ["rename-folders"],
     (data: { name: string }) => renameFolders(id, data.name),
@@ -43,14 +43,13 @@ const Folder = ({ id, name, optimistic, count }: Props) => {
   const handleNameDoubleClick = (e: React.MouseEvent<HTMLParagraphElement>) => {
     e.stopPropagation();
     Rename();
-    //Rename functionality
   };
 
   const updateFolderName = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (inputRef.current) {
-      if (inputRef.current.value) {
-        mutate({ name: inputRef.current.value, id });
-      } else Renamed();
+    if (inputRef.current?.value) {
+      mutate({ name: inputRef.current.value });
+    } else {
+      Renamed();
     }
   };
 
@@ -60,30 +59,31 @@ const Folder = ({ id, name, optimistic, count }: Props) => {
       ref={folderCardRef}
       className={cn(
         optimistic && "opacity-60",
-        "flex hover:bg-neutral-800 cursor-pointer transition duration-150 items-center gap-2 justify-between min-w-[250px] py-4 px-4 rounded-lg  border-[1px]"
+        "relative flex cursor-pointer overflow-hidden transition-all duration-300 items-center gap-2 justify-between min-w-[250px] py-4 px-4 rounded-lg border border-neutral-700 bg-[#1A1A1A] "
       )}
     >
+      <div className="absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100">
+        <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-[#5e17eb] blur-xl opacity-50"></div>
+      </div>
+
       <Loader state={isPending}>
         <div className="flex flex-col gap-[1px]">
           {onRename ? (
             <Input
-              onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
-                updateFolderName(e);
-              }}
+              onBlur={updateFolderName}
               autoFocus
               placeholder={name}
-              className="border-none text-base w-full outline-none text-neutral-300 bg-transparent p-0"
+              className="border-none text-base w-full outline-none text-neutral-300 bg-transparent p-0 focus:ring-2 focus:ring-purple-500 transition-all duration-300"
               ref={inputRef}
             />
           ) : (
             <p
               onClick={(e) => e.stopPropagation()}
-              className="text-neutral-300"
+              className="text-neutral-300 transition-all duration-300 hover:text-white"
               onDoubleClick={handleNameDoubleClick}
             >
-              {latestVariables &&
-              latestVariables.status === "pending" &&
-              latestVariables.variables.id === id
+              {latestVariables?.status === "pending" &&
+              latestVariables?.variables.id === id
                 ? latestVariables.variables.name
                 : name}
             </p>

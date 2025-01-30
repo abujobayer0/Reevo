@@ -47,7 +47,7 @@ const CommentCard = ({
         <Avatar>
           <AvatarImage src={author.image} alt="author" />
         </Avatar>
-        <p className="capitalize text-sm text-[#BDBDBD] flex">
+        <span className="capitalize text-sm text-[#BDBDBD] flex">
           {author.firstname} {author.lastname}{" "}
           <div className="flex items-center gap-[0]">
             <DotIcon className="text-[#707070]" />
@@ -55,7 +55,7 @@ const CommentCard = ({
               {daysAgo === 0 ? "Today" : `${daysAgo}d ago`}
             </span>
           </div>
-        </p>
+        </span>
       </div>
       <div>
         <p className="text-[#BDBDBD]">{comment}</p>

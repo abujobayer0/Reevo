@@ -30,9 +30,7 @@ const Page = async (props: Props) => {
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <div className="px-10 ">
-        <VideoPreview videoId={props.params.videoId} />
-      </div>
+      <VideoPreview videoId={props.params.videoId} />
     </HydrationBoundary>
   );
 };

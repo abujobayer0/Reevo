@@ -64,24 +64,6 @@ const VideoPreview = ({ videoId }: Props) => {
           <source src={`${video.source}`} />
         </video>
       </div>
-
-      <div className="flex flex-col text-2xl gap-y-4">
-        <div className="flex gap-x-5 items-center justify-between">
-          <p className="text-[#BDBDBD] text-semibold">Description</p>
-          {/* {author ? (
-              <EditVideo
-                videoId={videoId}
-                title={video.title as string}
-                description={video.description as string}
-              />
-            ) : (
-              <></>
-            )} */}
-        </div>
-        <p className="text-[#9D9D9D] text-lg text-medium">
-          {video.description}
-        </p>
-      </div>
       <div className="lg:col-span-1 flex flex-col gap-y-16">
         <div className="flex justify-end gap-x-3 items-center">
           <CopyLink
@@ -114,6 +96,23 @@ const VideoPreview = ({ videoId }: Props) => {
             />
           </TabMenu>
         </div>
+      </div>
+      <div className="flex flex-col text-2xl gap-y-4">
+        <div className="flex gap-x-5 items-center justify-between">
+          <p className="text-[#BDBDBD] text-semibold">Description</p>
+          {/* {author ? (
+              <EditVideo
+                videoId={videoId}
+                title={video.title as string}
+                description={video.description as string}
+              />
+            ) : (
+              <></>
+            )} */}
+        </div>
+        <p className="text-[#9D9D9D] text-lg text-medium">
+          {video.description}
+        </p>
       </div>
     </div>
   );
