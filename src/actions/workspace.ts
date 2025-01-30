@@ -2,6 +2,7 @@
 
 import { client } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
+import { sendEmail } from "./user";
 
 export const verifyAccessToWorkspace = async (workspaceId: string) => {
   try {
@@ -89,6 +90,7 @@ export const getAllUserVideos = async (workSpaceId: string) => {
         createdAt: true,
         source: true,
         processing: true,
+        views: true,
         Folder: {
           select: {
             id: true,
@@ -343,5 +345,101 @@ export const getPreviewVideo = async (videoId: string) => {
     return { status: 404 };
   } catch (error) {
     return { status: 400 };
+  }
+};
+
+export const sendEmailForFirstView = async (videoId: string) => {
+  try {
+    const user = await currentUser();
+    if (!user) return { status: 404, message: "User not found" };
+
+    const video = await client.video.findUnique({
+      where: {
+        id: videoId,
+      },
+      select: {
+        title: true,
+        views: true,
+        User: {
+          select: {
+            email: true,
+            clerkid: true,
+            firstname: true,
+            firstView: true,
+          },
+        },
+      },
+    });
+
+    if (!video) return { status: 404, message: "Video not found" };
+    if (!video.User?.firstView)
+      return { status: 200, message: "First view notifications disabled" };
+    if (video.views !== 0) return { status: 200, message: "Not first view" };
+
+    await client.video.update({
+      where: {
+        id: videoId,
+      },
+      data: {
+        views: 1,
+      },
+    });
+
+    try {
+      const { transporter, mailOptions } = await sendEmail(
+        video.User.email!,
+        "🎉 Congrats! Your Video Got Its First Viewer!",
+        `Your video "${video.title}" just got its first view!`,
+
+        `<div style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; text-align: center;">
+                <div style="max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                  <h2 style="color: #333;">🎉 Great News, ${video.User.firstname}! </h2>
+                  <p style="font-size: 16px; color: #666;">Your video <strong>"${video.title}"</strong> just got its first view! 🚀</p>
+                  
+                  <div style="margin: 20px 0;">
+                    <a href="${process.env.NEXT_PUBLIC_HOST_URL}/preview/${videoId}" 
+                       style="background-color: #007bff; color: white; padding: 12px 24px; text-decoration: none; font-size: 16px; border-radius: 6px; display: inline-block;">
+                      View Video
+                    </a>
+                  </div>
+          
+                  <p style="font-size: 14px; color: #999;">Keep uploading great content! The world is watching. 🌍</p>
+          
+                  <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;"/>
+                  <p style="font-size: 12px; color: #888;">If you didn't upload this video, please ignore this message.</p>
+                </div>
+            </div>`
+      );
+
+      await client.$transaction(async (tx) => {
+        await new Promise((resolve, reject) => {
+          transporter.sendMail(mailOptions, (err, info) => {
+            if (err) reject(err);
+            else resolve(info);
+          });
+        });
+
+        await tx.user.update({
+          where: {
+            clerkid: video.User?.clerkid,
+          },
+          data: {
+            notification: {
+              create: {
+                content: `Your video "${video.title}" just got its first view!`,
+              },
+            },
+          },
+        });
+      });
+
+      return { status: 200, message: "First view notification sent" };
+    } catch (emailError) {
+      console.error("Email sending failed:", emailError);
+      return { status: 500, message: "Failed to send notification" };
+    }
+  } catch (error) {
+    console.error("sendEmailForFirstView error:", error);
+    return { status: 500, message: "Internal server error" };
   }
 };

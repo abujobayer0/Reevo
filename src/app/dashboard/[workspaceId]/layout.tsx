@@ -34,7 +34,7 @@ const WorkspaceLayout = async ({
   const hasAccess = await verifyAccessToWorkspace(workspaceId);
 
   if (hasAccess.status !== 200) {
-    return redirect(`/dashboard/${auth.user?.workspace[0].id}`);
+    return redirect(`/dashboard/${auth.user?.workspace[0]?.id}`);
   }
 
   if (!hasAccess.data?.workspace) return null;

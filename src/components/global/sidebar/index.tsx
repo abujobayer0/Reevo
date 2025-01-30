@@ -10,11 +10,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-
+import dynamic from "next/dynamic";
+const Modal = dynamic(() => import("../modal"), { ssr: false });
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
-import Modal from "../modal";
 import { Menu, PlusCircle } from "lucide-react";
 import Search from "../search";
 import { MENU_ITEMS } from "@/constants";
@@ -169,7 +169,7 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
                     selected={pathName === `/dashboard/${item.id}`}
                     title={item.name}
                     notifications={0}
-                    key={item.name}
+                    key={item.id}
                     icon={
                       <WorkspacePlaceholder>
                         {item.name.charAt(0)}
@@ -185,7 +185,7 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
                 selected={pathName === `/dashboard/${item.WorkSpace.id}`}
                 title={item.WorkSpace.name}
                 notifications={0}
-                key={item.WorkSpace.name}
+                key={item.WorkSpace.id}
                 icon={
                   <WorkspacePlaceholder>
                     {item.WorkSpace.name.charAt(0)}

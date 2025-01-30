@@ -1,10 +1,10 @@
 "use client";
 
-import { getPreviewVideo } from "@/actions/workspace";
+import { getPreviewVideo, sendEmailForFirstView } from "@/actions/workspace";
 import { VideoProps } from "@/app/types/index.types";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import CopyLink from "../copy-link";
 import { truncateString } from "@/lib/utils";
 import RichLink from "../rich-link";
@@ -22,6 +22,7 @@ const VideoPreview = ({ videoId }: Props) => {
     queryKey: ["preview-video", videoId],
     queryFn: () => getPreviewVideo(videoId),
   });
+  const notifyFirstView = async () => await sendEmailForFirstView(videoId);
 
   const { data: video, status, author } = data as VideoProps;
 
@@ -34,6 +35,17 @@ const VideoPreview = ({ videoId }: Props) => {
   const daysAgo = Math.floor(
     (new Date().getTime() - video?.createdAt.getTime()) / (24 * 60 * 60 * 1000)
   );
+  useEffect(() => {
+    if (video?.views === 0) {
+      console.log(video);
+      notifyFirstView().then((res) => {
+        console.log(res);
+      });
+    }
+    return () => {
+      notifyFirstView();
+    };
+  }, []);
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 lg:py-10 overflow-y-auto gap-5">

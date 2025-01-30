@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { getPaymentInfo } from "@/actions/user";
 import { Button } from "@/components/ui/button";
 import { Loader, CreditCard, CheckCircle, XCircle } from "lucide-react";
+import { useSubscription } from "@/hooks/useSubscription";
 
 const BillingPage = () => {
   const [payment, setPayment] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const { onSubscribe, isProcessing } = useSubscription();
 
   useEffect(() => {
     const fetchPaymentInfo = async () => {
@@ -59,7 +61,11 @@ const BillingPage = () => {
               <XCircle size={18} /> Cancel Plan
             </Button>
           ) : (
-            <Button className="text-sm flex items-center gap-2 px-4 py-2 rounded-lg bg-[#6D28D9] hover:bg-[#5B21B6] transition self-start">
+            <Button
+              onClick={onSubscribe}
+              disabled={isProcessing}
+              className="text-sm flex items-center gap-2 px-4 py-2 rounded-lg bg-[#6D28D9] hover:bg-[#5B21B6] transition self-start"
+            >
               <CheckCircle size={18} /> Upgrade to PRO
             </Button>
           )}
