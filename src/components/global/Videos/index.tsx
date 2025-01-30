@@ -13,6 +13,28 @@ type Props = {
   videosKey: string;
   workspaceId: string;
 };
+const video = {
+  User: {
+    id: "1",
+    name: "John Doe",
+    email: "john.doe@example.com",
+    image: "https://www.example.com/image.jpg",
+    firstName: "John",
+    lastName: "Doe",
+  },
+  id: "1",
+  title: "Video 1",
+  processing: false,
+  source: "https://www.example.com/video.mp4",
+  workspaceId: "1",
+  folderId: "1",
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  Folder: {
+    id: "1",
+    name: "Folder 1",
+  },
+};
 
 const Videos = ({ folderId, videosKey, workspaceId }: Props) => {
   const { data: videoData } = useQueryData([videosKey], () =>
