@@ -75,10 +75,9 @@ const VideoPreview = ({ videoId }: Props) => {
           className="w-full aspect-video opacity-50 !z-0 rounded-xl"
           controls
         >
-          {/* <source
-            src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${video.source}#1`}
-          /> */}
-          <source src={`${video?.source}`} />
+          <source
+            src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${video.source}`}
+          />
         </video>
       </div>
       <div className="lg:col-span-1 flex flex-col gap-y-16">

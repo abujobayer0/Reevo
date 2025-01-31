@@ -13,7 +13,7 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 import Sidebar from "@/components/global/sidebar";
-import GlobalHeader from "@/components/global/global-header";
+import GlobalHeader from "@/components/global/global-header/index";
 
 type Props = {
   children: React.ReactNode;
