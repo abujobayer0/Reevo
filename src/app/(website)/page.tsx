@@ -1,5 +1,12 @@
 "use client";
+
+import { Comfortaa } from "next/font/google";
 import Image from "next/image";
+
+const comfortaa = Comfortaa({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
 
 export default function Home() {
   const features = [
@@ -48,7 +55,7 @@ export default function Home() {
   }
 
   return (
-    <div className="relative pt-8 flex flex-col gap-20 overflow-hidden bg-[#0F0F13]">
+    <div className="relative pt-10 flex flex-col gap-24 mt-8 overflow-hidden bg-[#0F0F13]">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#5e17eb]/20 rounded-full blur-[120px] animate-pulse" />
@@ -56,15 +63,17 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative container flex flex-col-reverse md:flex-row items-center justify-between gap-10 mt-10 px-4 sm:px-6 lg:px-8">
+      <section className="relative container flex flex-col-reverse md:flex-row items-center justify-between gap-12 px-4 sm:px-6 lg:px-8">
         <div className="flex-1 space-y-8 animate-fade-in text-center md:text-left">
           <div className="space-y-4">
             <div className="inline-block rounded-full px-4 py-1.5 bg-gradient-to-r from-[#5e17eb]/10 to-[#8c52ff]/10 border border-[#5e17eb]/20 backdrop-blur-sm">
-              <span className="bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] bg-clip-text text-transparent text-sm sm:text-base">
-                ✨ Professional Video Platform
+              <span className="bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] bg-clip-text text-transparent text-sm sm:text-base font-medium">
+                🚀 Next-Gen Video Platform
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
+            <h1
+              className={`${comfortaa.className} text-5xl sm:text-6xl md:text-7xl font-bold leading-tight tracking-tight`}
+            >
               <span className="bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] bg-clip-text text-transparent">
                 Record, Share &
               </span>
@@ -72,9 +81,9 @@ export default function Home() {
               <span className="text-white">Analyze Videos</span>
             </h1>
           </div>
-          <p className="text-base sm:text-lg text-gray-400/80 max-w-xl mx-auto md:mx-0">
-            Professional-grade video recording platform with AI-powered
-            insights, real-time streaming, and team collaboration features.
+          <p className="text-lg sm:text-xl text-gray-400/90 max-w-xl mx-auto md:mx-0 leading-relaxed">
+            Professional video creation platform enhanced with AI capabilities
+            for modern creators and teams.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <a
@@ -146,42 +155,392 @@ export default function Home() {
         </div>
         <div className="flex-1 w-full md:w-auto">
           <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-[#5e17eb]/20 backdrop-blur-sm">
-            <Image
-              src="/dashboard-preview.png"
-              alt="Dashboard Preview"
-              fill
-              className="object-cover hover:scale-105 transition-transform duration-500"
-              priority
-            />
+            <svg
+              viewBox="0 0 800 500"
+              className="w-full h-full"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Background */}
+              <rect width="800" height="500" fill="#1A1A1A" />
+
+              {/* Header Bar */}
+              <rect width="800" height="40" fill="#252525">
+                <animate
+                  attributeName="opacity"
+                  values="0.5;0.7;0.5"
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+              </rect>
+
+              {/* Control Buttons */}
+              <circle cx="20" cy="20" r="6" fill="#FF5F57" />
+              <circle cx="40" cy="20" r="6" fill="#FFBD2E" />
+              <circle cx="60" cy="20" r="6" fill="#28C840" />
+
+              {/* Main Content Area */}
+              <g className="recording-area">
+                {/* Screen Recording Preview */}
+                <rect
+                  x="40"
+                  y="60"
+                  width="480"
+                  height="400"
+                  rx="8"
+                  fill="#2A2A2A"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.8;1;0.8"
+                    dur="4s"
+                    repeatCount="indefinite"
+                  />
+                </rect>
+
+                {/* Recording Indicator */}
+                <circle cx="60" cy="80" r="6" fill="#FF4444">
+                  <animate
+                    attributeName="r"
+                    values="6;8;6"
+                    dur="1s"
+                    repeatCount="indefinite"
+                  />
+                </circle>
+
+                {/* Time Counter */}
+                <text x="80" y="85" fill="#FFFFFF" fontSize="14">
+                  00:42
+                </text>
+
+                {/* Animated Waveform */}
+                <g transform="translate(40, 380)">
+                  {[...Array(20)].map((_, i) => (
+                    <rect
+                      key={i}
+                      x={i * 24 + 10}
+                      y="0"
+                      width="4"
+                      height="20"
+                      fill="#5e17eb"
+                    >
+                      <animate
+                        attributeName="height"
+                        values={`${Math.random() * 20};${Math.random() * 40};${
+                          Math.random() * 20
+                        }`}
+                        dur="1.5s"
+                        repeatCount="indefinite"
+                        begin={`${i * 0.1}s`}
+                      />
+                    </rect>
+                  ))}
+                </g>
+
+                {/* Webcam Preview - Bottom Right */}
+                <g transform="translate(380, 340)">
+                  <rect
+                    width="120"
+                    height="100"
+                    rx="8"
+                    fill="#1A1A1A"
+                    stroke="#333333"
+                    strokeWidth="2"
+                  />
+                  {/* Animated Avatar/Webcam Placeholder */}
+                  <g transform="translate(60, 50)">
+                    <circle r="30" fill="#2A2A2A" />
+                    <path
+                      d="M60 50 Q60 35 45 35 Q30 35 30 50 Q30 65 45 65 Q60 65 60 50"
+                      fill="#3A3A3A"
+                    >
+                      <animate
+                        attributeName="d"
+                        values="M60 50 Q60 35 45 35 Q30 35 30 50 Q30 65 45 65 Q60 65 60 50;
+                                M60 48 Q60 33 45 33 Q30 33 30 48 Q30 63 45 63 Q60 63 60 48;
+                                M60 50 Q60 35 45 35 Q30 35 30 50 Q30 65 45 65 Q60 65 60 50"
+                        dur="4s"
+                        repeatCount="indefinite"
+                      />
+                    </path>
+                    {/* Webcam Active Indicator */}
+                    <circle cx="35" cy="35" r="3" fill="#28C840">
+                      <animate
+                        attributeName="opacity"
+                        values="1;0.5;1"
+                        dur="2s"
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                  </g>
+                </g>
+
+                {/* Media Config Menu - Top Right */}
+                <g transform="translate(440, 70)">
+                  <rect
+                    width="60"
+                    height="160"
+                    rx="6"
+                    fill="#252525"
+                    className="media-controls"
+                  />
+
+                  {/* Camera Icon */}
+                  <g transform="translate(20, 20)">
+                    <rect width="20" height="16" rx="2" fill="#8c52ff" />
+                    <animate
+                      attributeName="opacity"
+                      values="0.8;1;0.8"
+                      dur="3s"
+                      repeatCount="indefinite"
+                    />
+                  </g>
+
+                  {/* Microphone Icon */}
+                  <g transform="translate(20, 60)">
+                    <path
+                      d="M10 0v12m-4-4v4h8v-4"
+                      stroke="#8c52ff"
+                      strokeWidth="2"
+                      fill="none"
+                    >
+                      <animate
+                        attributeName="opacity"
+                        values="0.8;1;0.8"
+                        dur="3s"
+                        repeatCount="indefinite"
+                        begin="0.5s"
+                      />
+                    </path>
+                  </g>
+
+                  {/* Screen Share Icon */}
+                  <g transform="translate(20, 100)">
+                    <rect width="20" height="14" rx="2" fill="#8c52ff" />
+                    <rect x="6" y="4" width="8" height="6" fill="#252525" />
+                    <animate
+                      attributeName="opacity"
+                      values="0.8;1;0.8"
+                      dur="3s"
+                      repeatCount="indefinite"
+                      begin="1s"
+                    />
+                  </g>
+
+                  {/* Settings Icon */}
+                  <g transform="translate(20, 140)">
+                    <circle
+                      cx="10"
+                      cy="10"
+                      r="8"
+                      stroke="#8c52ff"
+                      strokeWidth="2"
+                      fill="none"
+                    >
+                      <animateTransform
+                        attributeName="transform"
+                        type="rotate"
+                        from="0 10 10"
+                        to="360 10 10"
+                        dur="8s"
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                    <circle cx="10" cy="10" r="3" fill="#8c52ff" />
+                  </g>
+                </g>
+
+                {/* Right Sidebar */}
+                <g transform="translate(560, 60)">
+                  {/* Sidebar Background */}
+                  <rect
+                    width="200"
+                    height="400"
+                    rx="8"
+                    fill="#252525"
+                    opacity="0.9"
+                  />
+
+                  {/* Sidebar Header */}
+                  <rect width="200" height="50" rx="8" fill="#2A2A2A" />
+                  <text
+                    x="20"
+                    y="30"
+                    fill="#FFFFFF"
+                    fontSize="14"
+                    fontWeight="500"
+                  >
+                    Recording Settings
+                  </text>
+
+                  {/* Settings Groups */}
+                  {[
+                    { title: "Video", y: 70 },
+                    { title: "Audio", y: 170 },
+                    { title: "Quality", y: 270 },
+                  ].map((group, index) => (
+                    <g key={index} transform={`translate(0, ${group.y})`}>
+                      <text
+                        x="20"
+                        y="0"
+                        fill="#8c52ff"
+                        fontSize="12"
+                        fontWeight="500"
+                      >
+                        {group.title}
+                      </text>
+                      <rect
+                        x="20"
+                        y="20"
+                        width="160"
+                        height="40"
+                        rx="6"
+                        fill="#333333"
+                        opacity="0.8"
+                      >
+                        <animate
+                          attributeName="opacity"
+                          values="0.8;1;0.8"
+                          dur="3s"
+                          repeatCount="indefinite"
+                          begin={`${index * 0.5}s`}
+                        />
+                      </rect>
+                      {/* Setting Indicator */}
+                      <circle cx="160" y="40" r="3" fill="#28C840">
+                        <animate
+                          attributeName="opacity"
+                          values="1;0.5;1"
+                          dur="2s"
+                          repeatCount="indefinite"
+                          begin={`${index * 0.3}s`}
+                        />
+                      </circle>
+                    </g>
+                  ))}
+
+                  {/* Bottom Action Button */}
+                  <g transform="translate(20, 350)">
+                    <rect
+                      width="160"
+                      height="40"
+                      rx="6"
+                      fill="#5e17eb"
+                      className="action-button"
+                    >
+                      <animate
+                        attributeName="opacity"
+                        values="0.9;1;0.9"
+                        dur="2s"
+                        repeatCount="indefinite"
+                      />
+                    </rect>
+                    <text
+                      x="80"
+                      y="20"
+                      fill="#FFFFFF"
+                      fontSize="14"
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                    >
+                      Start Recording
+                    </text>
+                  </g>
+                </g>
+              </g>
+
+              {/* Hover Effects Overlay */}
+              <rect
+                x="440"
+                y="70"
+                width="60"
+                height="160"
+                rx="6"
+                fill="white"
+                opacity="0"
+                className="media-controls-hover"
+              >
+                <animate
+                  attributeName="opacity"
+                  values="0;0.05;0"
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+              </rect>
+
+              {/* Floating Elements */}
+              <g className="floating-elements">
+                {[...Array(5)].map((_, i) => (
+                  <circle
+                    key={i}
+                    cx={Math.random() * 720 + 40}
+                    cy={Math.random() * 320 + 60}
+                    r="4"
+                    fill="#8c52ff"
+                    opacity="0.6"
+                  >
+                    <animate
+                      attributeName="opacity"
+                      values="0.6;0.2;0.6"
+                      dur={`${2 + Math.random() * 2}s`}
+                      repeatCount="indefinite"
+                      begin={`${i * 0.5}s`}
+                    />
+                    <animate
+                      attributeName="cy"
+                      values={`${Math.random() * 320 + 60};${
+                        Math.random() * 320 + 80
+                      };${Math.random() * 320 + 60}`}
+                      dur={`${3 + Math.random() * 2}s`}
+                      repeatCount="indefinite"
+                      begin={`${i * 0.5}s`}
+                    />
+                  </circle>
+                ))}
+              </g>
+
+              {/* Gradient Overlay */}
+              <rect
+                width="800"
+                height="500"
+                fill="url(#gradient)"
+                opacity="0.2"
+              />
+
+              {/* Gradients */}
+              <defs>
+                <linearGradient id="gradient" x1="0" y1="0" x2="800" y2="500">
+                  <stop offset="0%" stopColor="#5e17eb" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="#8c52ff" stopOpacity="0.1" />
+                </linearGradient>
+              </defs>
+            </svg>
             <div className="absolute inset-0 bg-gradient-to-tr from-[#5e17eb]/10 to-transparent" />
           </div>
         </div>
       </section>
-
+      <div id="features"></div>
       {/* Features Section */}
-      <section
-        id="features"
-        className="relative container px-4 sm:px-6 lg:px-8"
-      >
+      <section className="relative container px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight">
             <span className="bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] bg-clip-text text-transparent">
-              Everything You Need
+              ⚡️Everything You Need
             </span>
           </h2>
-          <p className="text-gray-400/80 text-lg">
-            Powerful features for modern video creators
+          <p className="text-gray-400/90 text-lg sm:text-xl max-w-2xl mx-auto">
+            Powerful features designed for modern video creators and teams
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group relative bg-white/5 backdrop-blur-sm p-6 rounded-2xl space-y-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 hover:shadow-[#5e17eb]/20 border border-white/10 hover:border-[#8c52ff]/50"
+              className="group relative bg-gradient-to-b from-white/[0.08] to-transparent p-8 rounded-3xl space-y-4 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 hover:shadow-[#5e17eb]/20 border border-white/[0.08] hover:border-[#8c52ff]/50"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-[#5e17eb]/10 to-[#8c52ff]/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <div className="w-14 h-14 bg-gradient-to-br from-[#5e17eb]/10 to-[#8c52ff]/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <svg
-                  className="w-6 h-6 text-[#8c52ff]"
+                  className="w-7 h-7 text-[#8c52ff]"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -189,22 +548,24 @@ export default function Home() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={1.5}
                     d={feature.icon}
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-white">
+              <h3 className="text-xl font-semibold text-white">
                 {feature.title}
               </h3>
-              <p className="text-gray-400/80">{feature.description}</p>
+              <p className="text-gray-400/90 leading-relaxed">
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
       {/* AI Features Section */}
-      <section className="relative px-4 container sm:px-6 lg:px-8">
+      <section className="relative container px-4 sm:px-6 lg:px-8">
         <div className="backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-12 border border-white/10 bg-gradient-to-br from-[#0F0F13] to-[#1A1A1A] relative overflow-hidden">
           {/* Glow Effects */}
           <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-[#5e17eb]/20 rounded-full blur-[120px] animate-pulse" />
@@ -215,7 +576,7 @@ export default function Home() {
               <div className="space-y-2">
                 <div className="inline-block rounded-full px-4 py-1.5 bg-gradient-to-r from-[#5e17eb]/10 to-[#8c52ff]/10 border border-[#5e17eb]/20">
                   <span className="bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] bg-clip-text text-transparent font-medium">
-                    AI-Powered Features
+                    ✨ AI-Powered Features
                   </span>
                 </div>
                 <h2 className="text-3xl sm:text-4xl font-bold text-center md:text-left">
@@ -298,12 +659,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      <div id="how-it-works"></div>
       {/* How it Works Section */}
-      <section
-        id="how-it-works"
-        className="relative container px-4 sm:px-6 lg:px-8 py-20"
-      >
+      <section className="relative container px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">
             <span className="bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] bg-clip-text text-transparent">
@@ -361,11 +719,9 @@ export default function Home() {
         </div>
       </section>
 
+      <div id="testimonials"></div>
       {/* Testimonials Section */}
-      <section
-        id="testimonials"
-        className="relative container px-4 sm:px-6 lg:px-8 py-20"
-      >
+      <section className="relative container px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">
             <span className="bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] bg-clip-text text-transparent">
@@ -466,13 +822,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      <div id="pricing"></div>
       {/* Pricing Section */}
-      <section
-        className="flex flex-col container items-center gap-12 px-4 sm:px-6 lg:px-8"
-        id="pricing"
-      >
-        <div className="text-center space-y-4">
+      <section className="container flex flex-col items-center px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
           <h2 className="text-4xl font-bold">
             <span className="bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] bg-clip-text text-transparent">
               Simple, Transparent Pricing
@@ -483,7 +836,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 w-full max-w-5xl">
+        <div className="grid md:grid-cols-2  gap-8 w-full max-w-5xl">
           {/* Free Plan */}
           <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl space-y-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 hover:shadow-[#5e17eb]/20 border border-white/10 hover:border-[#8c52ff]/50">
             <h3 className="text-2xl font-semibold">Free</h3>
@@ -680,105 +1033,450 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <div id="download"></div>
+      <section className="container px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-16">
+          <div className="flex-1 space-y-8 order-2 text-center md:text-left">
+            <h2 className="text-4xl font-bold">
+              <span className="bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] bg-clip-text text-transparent">
+                Professional Desktop App
+              </span>
+            </h2>
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#5e17eb]/10 to-[#8c52ff]/10 rounded-xl flex items-center justify-center shrink-0">
+                  <svg
+                    className="w-6 h-6 text-[#8c52ff]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">
+                    Enhanced Security
+                  </h3>
+                  <p className="text-gray-400">
+                    Enterprise-grade encryption and secure data handling for
+                    your recordings.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#5e17eb]/10 to-[#8c52ff]/10 rounded-xl flex items-center justify-center shrink-0">
+                  <svg
+                    className="w-6 h-6 text-[#8c52ff]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">
+                    Instant Sharing
+                  </h3>
+                  <p className="text-gray-400">
+                    Share your recordings instantly with a single click.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <a
+                href="#"
+                className="group px-6 py-3 bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] rounded-xl transition-all duration-300 hover:scale-105 text-white font-medium flex items-center gap-2"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M21.928 5.617a1 1 0 0 0-.928-.617H3a1 1 0 0 0-.928.617l9.428 8.383zm.072 1.826L12.573 15.83a1 1 0 0 1-1.146 0L2 7.443V19a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1z" />
+                </svg>
+                Download for Windows
+                <span className="text-sm text-white/80">(64-bit)</span>
+              </a>
+              <a
+                href="#"
+                className="px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#8c52ff]/50 rounded-xl transition-all duration-300 text-white font-medium flex items-center gap-2"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                </svg>
+                Download for Mac
+              </a>
+            </div>
+          </div>
 
-      {/* Desktop App Section */}
-      <section className="flex container flex-col md:flex-row items-center justify-between gap-16 mt-20 px-4 sm:px-6 lg:px-8">
-        <div className="flex-1 space-y-8 text-center md:text-left">
-          <h2 className="text-4xl font-bold">
-            <span className="bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] bg-clip-text text-transparent">
-              Professional Desktop App
-            </span>
-          </h2>
-          <div className="space-y-6">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#5e17eb]/10 to-[#8c52ff]/10 rounded-xl flex items-center justify-center shrink-0">
-                <svg
-                  className="w-6 h-6 text-[#8c52ff]"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">
-                  Enhanced Security
-                </h3>
-                <p className="text-gray-400">
-                  Enterprise-grade encryption and secure data handling for your
-                  recordings.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#5e17eb]/10 to-[#8c52ff]/10 rounded-xl flex items-center justify-center shrink-0">
-                <svg
-                  className="w-6 h-6 text-[#8c52ff]"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Instant Sharing</h3>
-                <p className="text-gray-400">
-                  Share your recordings instantly with a single click.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <a
-              href="#"
-              className="group px-6 py-3 bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] rounded-xl transition-all duration-300 hover:scale-105 text-white font-medium flex items-center gap-2"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M21.928 5.617a1 1 0 0 0-.928-.617H3a1 1 0 0 0-.928.617l9.428 8.383zm.072 1.826L12.573 15.83a1 1 0 0 1-1.146 0L2 7.443V19a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1z" />
+          <div className="flex-1 relative w-full">
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-[#5e17eb]/20 backdrop-blur-sm">
+              <svg
+                viewBox="0 0 800 500"
+                className="w-full h-full"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* Background */}
+                <rect width="800" height="500" fill="#1A1A1A" />
+
+                {/* macOS Window */}
+                <g transform="translate(40, 40)">
+                  {/* Window Frame */}
+                  <rect width="340" height="400" rx="8" fill="#252525">
+                    <animate
+                      attributeName="opacity"
+                      values="0.9;1;0.9"
+                      dur="4s"
+                      repeatCount="indefinite"
+                    />
+                  </rect>
+
+                  {/* Title Bar */}
+                  <rect width="340" height="40" rx="8" fill="#2A2A2A" />
+
+                  {/* Window Controls */}
+                  <circle cx="20" cy="20" r="6" fill="#FF5F57" />
+                  <circle cx="40" cy="20" r="6" fill="#FFBD2E" />
+                  <circle cx="60" cy="20" r="6" fill="#28C840" />
+
+                  {/* Logo */}
+                  <g transform="translate(140, 12)">
+                    <use href="#app-logo" width="60" height="16" />
+                  </g>
+
+                  {/* Content Area */}
+                  <g transform="translate(20, 50)">
+                    {/* Recording Preview */}
+                    <rect width="300" height="200" rx="8" fill="#1A1A1A" />
+
+                    {/* Recording Indicator */}
+                    <circle cx="20" cy="20" r="6" fill="#FF4444">
+                      <animate
+                        attributeName="r"
+                        values="6;8;6"
+                        dur="1s"
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                    <text x="40" y="25" fill="#FFFFFF" fontSize="14">
+                      00:42
+                    </text>
+
+                    {/* Animated Waveform */}
+                    <g transform="translate(0, 180)">
+                      {[...Array(20)].map((_, i) => (
+                        <rect
+                          key={i}
+                          x={i * 15 + 10}
+                          y="0"
+                          width="4"
+                          height="20"
+                          fill="#5e17eb"
+                        >
+                          <animate
+                            attributeName="height"
+                            values={`${Math.random() * 20};${
+                              Math.random() * 40
+                            };${Math.random() * 20}`}
+                            dur="1.5s"
+                            repeatCount="indefinite"
+                            begin={`${i * 0.1}s`}
+                          />
+                        </rect>
+                      ))}
+                    </g>
+
+                    {/* Media Config Menu */}
+                    <g transform="translate(260, 10)">
+                      <rect width="30" height="120" rx="6" fill="#252525" />
+                      {["camera", "mic", "screen", "settings"].map((_, i) => (
+                        <circle
+                          key={i}
+                          cx="15"
+                          cy={20 + i * 30}
+                          r="8"
+                          fill="#8c52ff"
+                          opacity="0.8"
+                        >
+                          <animate
+                            attributeName="opacity"
+                            values="0.8;1;0.8"
+                            dur="3s"
+                            repeatCount="indefinite"
+                            begin={`${i * 0.5}s`}
+                          />
+                        </circle>
+                      ))}
+                    </g>
+
+                    {/* Bottom Controls */}
+                    <g transform="translate(0, 220)">
+                      <rect width="300" height="110" rx="8" fill="#2A2A2A" />
+                      <rect
+                        x="20"
+                        y="20"
+                        width="260"
+                        height="30"
+                        rx="15"
+                        fill="#5e17eb"
+                      >
+                        <animate
+                          attributeName="opacity"
+                          values="0.8;1;0.8"
+                          dur="2s"
+                          repeatCount="indefinite"
+                        />
+                      </rect>
+                      <text
+                        x="150"
+                        y="40"
+                        fill="#FFFFFF"
+                        fontSize="14"
+                        textAnchor="middle"
+                      >
+                        Start Recording
+                      </text>
+                      <g transform="translate(20, 70)">
+                        {[0, 1, 2].map((i) => (
+                          <circle
+                            key={i}
+                            cx={30 + i * 50}
+                            cy="10"
+                            r="8"
+                            fill="#8c52ff"
+                            opacity="0.6"
+                          >
+                            <animate
+                              attributeName="opacity"
+                              values="0.6;1;0.6"
+                              dur="2s"
+                              repeatCount="indefinite"
+                              begin={`${i * 0.3}s`}
+                            />
+                          </circle>
+                        ))}
+                      </g>
+                    </g>
+                  </g>
+                </g>
+
+                {/* Windows Window */}
+                <g transform="translate(420, 40)">
+                  {/* Window Frame */}
+                  <rect width="340" height="400" rx="8" fill="#252525">
+                    <animate
+                      attributeName="opacity"
+                      values="0.9;1;0.9"
+                      dur="4s"
+                      repeatCount="indefinite"
+                      begin="0.5s"
+                    />
+                  </rect>
+
+                  {/* Title Bar */}
+                  <rect width="340" height="40" rx="8" fill="#2A2A2A" />
+
+                  {/* Logo */}
+                  <g transform="translate(20, 12)">
+                    <use href="#app-logo" width="60" height="16" />
+                  </g>
+
+                  {/* Window Controls */}
+                  <g transform="translate(280, 0)">
+                    <rect
+                      x="0"
+                      y="12"
+                      width="14"
+                      height="14"
+                      rx="1"
+                      fill="#666666"
+                    />
+                    <rect
+                      x="20"
+                      y="12"
+                      width="14"
+                      height="14"
+                      rx="1"
+                      fill="#666666"
+                    />
+                    <rect
+                      x="40"
+                      y="12"
+                      width="14"
+                      height="14"
+                      rx="1"
+                      fill="#FF5F57"
+                    />
+                  </g>
+
+                  {/* Modern Sidebar */}
+                  <g transform="translate(20, 50)">
+                    <rect width="60" height="330" rx="8" fill="#2A2A2A" />
+                    {[0, 1, 2, 3, 4].map((i) => (
+                      <circle
+                        key={i}
+                        cx="30"
+                        cy={30 + i * 60}
+                        r="12"
+                        fill={i === 0 ? "#5e17eb" : "#3A3A3A"}
+                      >
+                        <animate
+                          attributeName="opacity"
+                          values="0.8;1;0.8"
+                          dur="3s"
+                          repeatCount="indefinite"
+                          begin={`${i * 0.2}s`}
+                        />
+                      </circle>
+                    ))}
+                  </g>
+
+                  {/* Main Content Area */}
+                  <g transform="translate(100, 50)">
+                    {/* Recording Preview */}
+                    <rect width="220" height="160" rx="8" fill="#1A1A1A" />
+                    <circle cx="20" cy="20" r="6" fill="#FF4444">
+                      <animate
+                        attributeName="opacity"
+                        values="1;0.5;1"
+                        dur="1s"
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+
+                    {/* Settings Cards */}
+                    <g transform="translate(0, 180)">
+                      {[0, 1].map((i) => (
+                        <g key={i} transform={`translate(0, ${i * 70})`}>
+                          <rect width="220" height="60" rx="8" fill="#2A2A2A" />
+                          <circle cx="30" cy="30" r="12" fill="#8c52ff">
+                            <animate
+                              attributeName="opacity"
+                              values="0.8;1;0.8"
+                              dur="2s"
+                              repeatCount="indefinite"
+                              begin={`${i * 0.3}s`}
+                            />
+                          </circle>
+                          <rect
+                            x="60"
+                            y="20"
+                            width="140"
+                            height="8"
+                            rx="4"
+                            fill="#3A3A3A"
+                          />
+                          <rect
+                            x="60"
+                            y="35"
+                            width="100"
+                            height="6"
+                            rx="3"
+                            fill="#3A3A3A"
+                            opacity="0.6"
+                          />
+                        </g>
+                      ))}
+                    </g>
+                  </g>
+                </g>
+
+                {/* Floating Elements */}
+                <g>
+                  {[...Array(8)].map((_, i) => (
+                    <circle
+                      key={i}
+                      cx={Math.random() * 720 + 40}
+                      cy={Math.random() * 420 + 40}
+                      r="3"
+                      fill="#8c52ff"
+                      opacity="0.6"
+                    >
+                      <animate
+                        attributeName="opacity"
+                        values="0.6;0.2;0.6"
+                        dur={`${2 + Math.random() * 2}s`}
+                        repeatCount="indefinite"
+                        begin={`${i * 0.3}s`}
+                      />
+                      <animate
+                        attributeName="cy"
+                        values={`${Math.random() * 420 + 40};${
+                          Math.random() * 420 + 60
+                        };${Math.random() * 420 + 40}`}
+                        dur={`${3 + Math.random() * 2}s`}
+                        repeatCount="indefinite"
+                        begin={`${i * 0.3}s`}
+                      />
+                    </circle>
+                  ))}
+                </g>
+
+                {/* Gradient Overlay */}
+                <rect
+                  width="800"
+                  height="500"
+                  fill="url(#gradient)"
+                  opacity="0.1"
+                />
+
+                {/* Definitions */}
+                <defs>
+                  <linearGradient id="gradient" x1="0" y1="0" x2="800" y2="500">
+                    <stop offset="0%" stopColor="#5e17eb" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#8c52ff" stopOpacity="0.1" />
+                  </linearGradient>
+
+                  {/* App Logo Definition - Replace path with your actual logo SVG path */}
+                  <symbol id="app-logo" viewBox="0 0 120 40">
+                    <path
+                      d="M10 20h20M10 20l10-10M10 20l10 10"
+                      stroke="#8c52ff"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <text
+                      x="40"
+                      y="25"
+                      fill="#FFFFFF"
+                      fontSize="16"
+                      fontWeight="bold"
+                    >
+                      Screenify
+                    </text>
+                  </symbol>
+                </defs>
               </svg>
-              Download for Windows
-              <span className="text-sm text-white/80">(64-bit)</span>
-            </a>
-            <a
-              href="#"
-              className="px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#8c52ff]/50 rounded-xl transition-all duration-300 text-white font-medium flex items-center gap-2"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-              </svg>
-              Download for Mac
-            </a>
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#5e17eb]/10 to-transparent" />
+            </div>
+            <div className="absolute -z-10 -top-10 -right-10 w-72 h-72 bg-[#6D28D9] opacity-20 blur-3xl rounded-full" />
           </div>
-        </div>
-        <div className="flex-1 relative w-full">
-          <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-[#5e17eb]/20">
-            <Image
-              src="/desktop-app-preview.png"
-              alt="Desktop App Preview"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#5e17eb]/10 to-transparent" />
-          </div>
-          <div className="absolute -z-10 -top-10 -right-10 w-72 h-72 bg-[#6D28D9] opacity-20 blur-3xl rounded-full" />
         </div>
       </section>
 
+      <div id="contact"></div>
       {/* Contact Section */}
-      <section className="container px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-        <div className="max-w-4xl mx-auto text-center space-y-4 mb-12">
+      <section className="container px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center mb-16">
           <h2 className="text-4xl font-bold">
             <span className="bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] bg-clip-text text-transparent">
               Get in Touch
@@ -897,8 +1595,8 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="mt-20 sm:mt-32 border-t border-white/10">
-        <div className="container px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <footer className="mt-24 border-t border-white/10">
+        <div className="container px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8">
             <div className="col-span-2 sm:col-span-1 space-y-6">
               <Image src="/logo.svg" alt="Logo" width={120} height={40} />
@@ -927,7 +1625,7 @@ export default function Home() {
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.756-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921 2.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                   </svg>
                 </a>
                 <a
@@ -1020,7 +1718,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className="mt-8 sm:mt-12 pt-8 border-t border-white/10 text-center text-sm text-gray-400">
+          <div className="mt-16 pt-8 border-t border-white/10 text-center text-sm text-gray-400">
             <p>© 2024 Your Company. All rights reserved.</p>
           </div>
         </div>
@@ -1031,7 +1729,7 @@ export default function Home() {
         @keyframes fade-in {
           from {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
           }
           to {
             opacity: 1;
@@ -1040,13 +1738,18 @@ export default function Home() {
         }
 
         .animate-fade-in {
-          animation: fade-in 1s ease-out forwards;
+          animation: fade-in 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .container {
+          max-width: 1280px;
+          margin: 0 auto;
         }
 
         @media (max-width: 640px) {
           .container {
-            padding-left: 1rem;
-            padding-right: 1rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
           }
         }
       `}</style>

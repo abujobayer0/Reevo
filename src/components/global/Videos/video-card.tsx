@@ -60,7 +60,7 @@ const VideoCard = (props: Props) => {
             className="w-full aspect-video opacity-50 z-20"
           >
             <source
-              src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${props.source}`}
+              src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${props.source}#t=1`}
             />
           </video>
           <div className="px-5 py-3 flex flex-col gap-7-2 z-20">

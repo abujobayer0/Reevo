@@ -54,6 +54,18 @@ const LandingPageNavBar = () => {
             >
               Pricing
             </Link>
+            <Link
+              href="#download"
+              className="relative text-sm font-medium text-white/90 hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-[#8c52ff] after:transition-all hover:after:w-full"
+            >
+              Download
+            </Link>
+            <Link
+              href="#contact"
+              className="relative text-sm font-medium text-white/90 hover:text-white transition-colors duration-200 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-[#8c52ff] after:transition-all hover:after:w-full"
+            >
+              Contact
+            </Link>
           </div>
 
           {/* Auth Buttons */}
