@@ -519,9 +519,98 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div id="features"></div>
+
+      {/* Preview Section */}
+      <section className="relative container px-4 sm:px-6 lg:px-8 py-24">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight">
+            <span className="bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] bg-clip-text text-transparent">
+              See It in Action
+            </span>
+          </h2>
+          <p className="text-gray-400/90 text-lg sm:text-xl max-w-2xl mx-auto">
+            Watch how easy it is to create, share, and analyze your videos
+          </p>
+        </div>
+
+        <div className="relative max-w-5xl mx-auto">
+          {/* Video Container */}
+          <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-[#5e17eb]/20 backdrop-blur-sm">
+            {/* Replace src with your actual video URL */}
+            <video
+              className="w-full h-full object-cover"
+              poster="/video-thumbnail.jpg"
+              controls
+            >
+              <source src="/demo-video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#5e17eb]/10 to-transparent pointer-events-none" />
+          </div>
+
+          {/* Feature Highlights */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
+            {[
+              {
+                icon: "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z",
+                title: "Quick Recording",
+                description: "Start recording in seconds with just one click",
+              },
+              {
+                icon: "M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
+                title: "Easy Sharing",
+                description: "Share your videos instantly with a unique link",
+              },
+              {
+                icon: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+                title: "AI Analysis",
+                description: "Get instant insights and transcriptions",
+              },
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className="group bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-white/10 hover:border-[#8c52ff]/50 transition-all duration-300"
+              >
+                <div className="w-12 h-12 bg-gradient-to-br from-[#5e17eb]/10 to-[#8c52ff]/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <svg
+                    className="w-6 h-6 text-[#8c52ff]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d={feature.icon}
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-gray-400/90">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Background Elements */}
+          <div className="absolute  -z-10 inset-0">
+            <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-[#5e17eb]/20 rounded-full blur-[120px] animate-pulse" />
+            <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-[#8c52ff]/20 rounded-full blur-[120px] animate-pulse delay-1000" />
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
-      <section className="relative container px-4 sm:px-6 lg:px-8">
+      <section
+        id="features"
+        className="relative container px-4 sm:px-6 lg:px-8"
+      >
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight">
             <span className="bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] bg-clip-text text-transparent">
