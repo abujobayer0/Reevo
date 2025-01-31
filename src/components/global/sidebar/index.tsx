@@ -31,6 +31,7 @@ import GlobalCard from "../global-card";
 import InfoBar from "../info-bar";
 import { WORKSPACES } from "@/redux/slices/workspaces";
 import { useDispatch } from "react-redux";
+import Link from "next/link";
 
 type Props = {
   activeWorkspaceId: string;
@@ -66,14 +67,16 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
 
   const SidebarSection = (
     <div className="bg-[#111111] flex-none relative p-4 h-full w-[250px] z-20 flex flex-col gap-4 items-center overflow-hidden">
-      <div className="bg-[#111111] p-4 flex gap-2 justify-center items-center mb-4 absolute top-0 left-0 right-0 ">
-        <Image src="/logo.svg" height={40} width={40} alt="logo" />
-        <p className="text-2xl">Reevo</p>{" "}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-5 -left-5 w-16 h-16 bg-[#8c52ff] blur-3xl opacity-50 animate-pulse"></div>
-          <div className="absolute -bottom-5 -right-5 w-16 h-16 bg-[#5e17eb] blur-3xl opacity-50 animate-pulse"></div>
+      <Link href="/">
+        <div className="bg-[#111111] p-4 flex gap-2 justify-center items-center mb-4 absolute top-0 left-0 right-0 ">
+          <Image src="/logo.svg" height={40} width={40} alt="logo" />
+          <p className="text-2xl">Reevo</p>{" "}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute -top-5 -left-5 w-16 h-16 bg-[#8c52ff] blur-3xl opacity-50 animate-pulse"></div>
+            <div className="absolute -bottom-5 -right-5 w-16 h-16 bg-[#5e17eb] blur-3xl opacity-50 animate-pulse"></div>
+          </div>
         </div>
-      </div>
+      </Link>
       <Select
         defaultValue={activeWorkspaceId}
         onValueChange={onChangeActiveWorkspace}
