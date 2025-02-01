@@ -14,6 +14,7 @@ import Activities from "../../activities";
 import AiTools from "../../ai-tools";
 import VideoTranscript from "../../video-transcript";
 import EditVideo from "../edit-video";
+import { Button } from "@/components/ui/button";
 
 type Props = { videoId: string };
 
@@ -48,6 +49,15 @@ const VideoPreview = ({ videoId }: Props) => {
     };
   }, []);
 
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = `${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${video.source}`;
+    link.setAttribute("download", video?.title || "video.mp4");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 lg:py-10 overflow-y-auto gap-5">
       <div className="flex flex-col lg:col-span-2 gap-y-10">
@@ -72,12 +82,14 @@ const VideoPreview = ({ videoId }: Props) => {
           </p>
         </span>
         <video
-          preload="metadata"
+          preload="auto"
           className="w-full aspect-video opacity-50 !z-0 rounded-xl"
           controls
+          controlsList="nodownload"
+          disablePictureInPicture
         >
           <source
-            src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${video.source}#1`}
+            src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${video.source}`}
           />
         </video>
       </div>
@@ -94,7 +106,10 @@ const VideoPreview = ({ videoId }: Props) => {
             source={video?.source}
             title={video?.title as string}
           />
-          <Download className="text-[#4d4c4c]" />
+
+          <Button onClick={handleDownload}>
+            <Download />
+          </Button>
         </div>
         <div>
           <TabMenu

@@ -154,7 +154,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex-1 w-full md:w-auto">
-          <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-[#5e17eb]/20 backdrop-blur-sm">
+          <div className="relative w-full rounded-2xl overflow-hidden border border-white/10  shadow-2xl shadow-[#5e17eb]/20 backdrop-blur-sm">
             <svg
               viewBox="0 0 800 500"
               className="w-full h-full"
@@ -1216,7 +1216,7 @@ export default function Home() {
           </div>
 
           <div className="flex-1 relative w-full">
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-[#5e17eb]/20 backdrop-blur-sm">
+            <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-[#5e17eb]/20 backdrop-blur-sm">
               <svg
                 viewBox="0 0 800 500"
                 className="w-full h-full"
