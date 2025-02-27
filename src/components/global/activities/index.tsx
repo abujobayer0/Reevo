@@ -29,9 +29,9 @@ const Activities = ({ author, videoId }: Props) => {
           comment={comment.comment}
           key={comment.id}
           author={{
-            image: comment.User?.image!,
-            firstname: comment.User?.firstname!,
-            lastname: comment.User?.lastname!,
+            image: comment?.User?.image ?? "",
+            firstname: comment?.User?.firstname ?? "",
+            lastname: comment?.User?.lastname ?? "",
           }}
           videoId={videoId}
           reply={comment.reply}

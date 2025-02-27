@@ -2,6 +2,7 @@
 
 import { Comfortaa } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link"; // Add this import
 
 const comfortaa = Comfortaa({
   subsets: ["latin"],
@@ -86,7 +87,7 @@ export default function Home() {
             for modern creators and teams.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <a
+            <Link
               href="/auth/sign-up"
               className="group px-8 py-4 bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(94,23,235,0.3)] text-white font-medium text-center"
             >
@@ -94,13 +95,13 @@ export default function Home() {
               <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">
                 →
               </span>
-            </a>
-            <a
+            </Link>
+            <Link
               href="#features"
               className="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#8c52ff]/50 rounded-2xl transition-all duration-300 text-white font-medium text-center backdrop-blur-sm"
             >
               See Features
-            </a>
+            </Link>
           </div>
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-gray-400">
             <div className="flex items-center gap-1">
@@ -834,9 +835,9 @@ export default function Home() {
               </div>
             </div>
             <p className="text-gray-400">
-              "The AI features have completely transformed how I create content.
-              The transcription accuracy is impressive, and the automated
-              summaries save me hours of work."
+              &quot;The AI features have completely transformed how I create
+              content. The transcription accuracy is impressive, and the
+              automated summaries save me hours of work.&quot;
             </p>
             <div className="flex gap-1 text-[#8c52ff]">
               {[...Array(5)].map((_, i) => (
@@ -863,9 +864,9 @@ export default function Home() {
               </div>
             </div>
             <p className="text-gray-400">
-              "Our team's communication has improved significantly since we
-              started using this platform. The instant sharing and collaboration
-              features are game-changers."
+              &quot;Our team&apos;s communication has improved significantly
+              since we started using this platform. The instant sharing and
+              collaboration features are game-changers.&quot;
             </p>
             <div className="flex gap-1 text-[#8c52ff]">
               {[...Array(5)].map((_, i) => (
@@ -892,9 +893,9 @@ export default function Home() {
               </div>
             </div>
             <p className="text-gray-400">
-              "The desktop app is incredibly reliable and easy to use. We've
-              seen a 40% increase in response rates since we started sending
-              personalized video messages."
+              &quot;The desktop app is incredibly reliable and easy to use.
+              We&apos;ve seen a 40% increase in response rates since we started
+              sending personalized video messages.&quot;
             </p>
             <div className="flex gap-1 text-[#8c52ff]">
               {[...Array(5)].map((_, i) => (
@@ -998,12 +999,12 @@ export default function Home() {
                 One-time AI feature trial
               </li>
             </ul>
-            <a
+            <Link
               href="/auth/sign-up"
               className="block text-center px-6 py-3 border border-gray-700 hover:border-[#8c52ff]/50 rounded-lg transition-all duration-300 hover:bg-[#5e17eb]/10"
             >
               Get Started
-            </a>
+            </Link>
           </div>
 
           {/* Pro Plan */}
@@ -1113,12 +1114,12 @@ export default function Home() {
                 Priority support
               </li>
             </ul>
-            <a
+            <Link
               href="/auth/sign-up"
               className="block text-center px-6 py-3 bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] rounded-lg transition-all duration-300 hover:scale-105"
             >
               Upgrade to Pro
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -1185,7 +1186,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <a
+              <Link
                 href="#"
                 className="group px-6 py-3 bg-gradient-to-r from-[#5e17eb] to-[#8c52ff] rounded-xl transition-all duration-300 hover:scale-105 text-white font-medium flex items-center gap-2"
               >
@@ -1198,8 +1199,8 @@ export default function Home() {
                 </svg>
                 Download for Windows
                 <span className="text-sm text-white/80">(64-bit)</span>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#8c52ff]/50 rounded-xl transition-all duration-300 text-white font-medium flex items-center gap-2"
               >
@@ -1211,7 +1212,7 @@ export default function Home() {
                   <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                 </svg>
                 Download for Mac
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -1572,7 +1573,7 @@ export default function Home() {
             </span>
           </h2>
           <p className="text-gray-400/80 text-lg">
-            Have questions? We're here to help you get started.
+            Have questions? We&apos;re here to help you get started.
           </p>
         </div>
 

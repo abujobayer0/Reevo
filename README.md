@@ -1,37 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Reevo - Next-Gen Video Platform 🚀
 
-## Getting Started
+![Reevo Banner](public/reevo.png)
 
-First, run the development server:
+Reevo is a professional video creation and sharing platform enhanced with AI capabilities, designed for modern creators and teams. Record, share, and analyze videos with powerful features and seamless collaboration.
+
+## 🌟 Key Features
+
+- **Real-Time Recording**: Capture high-quality screen recordings with no third-party dependencies
+- **AI-Powered Analysis**: Get instant transcriptions, summaries, and content generation
+- **Instant Sharing**: Share videos instantly with your team and prospects
+- **Workspace Management**: Organize videos in folders and collaborate with team members
+- **First View Notifications**: Get notified when someone watches your video for the first time
+- **Pro Features**: Access advanced features with our Pro subscription
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js 14, TypeScript, TailwindCSS, Tanstack Query
+- **Backend**: Node.js, Express
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: Clerk
+- **Payment**: Stripe
+- **AI**: OpenAI for transcriptions and summaries
+- **Email**: Nodemailer
+- **Desktop App**: Electron
+
+## 📦 Required Repositories
+
+To use Reevo, you'll need to set up three components:
+
+1. **Web Application** (Current Repo)
+2. **Desktop Application**: [Reevo Desktop](https://github.com/abujobayer0/Reevo-Desktop-ElectronJS)
+3. **Recording Server**: [Reevo Server](https://github.com/abujobayer0/Reevo-Server-Express)
+
+## 🚀 Getting Started
+
+### Prerequisites
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+node >= 18.0.0
+bun >= 1.0.0
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git clone https://github.com/abujobayer0/Reevo-Server-Express.git
+cd reevo
+```
 
-## Learn More
+2. Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+bun install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Set up environment variables:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+cp .env.example .env.local
+```
 
-## Deploy on Vercel
+4. Update the following environment variables:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=
+DATABASE_URL=
+STRIPE_CLIENT_SECRET=
+STRIPE_SUBSCRIPTION_PRICE_ID=
+NEXT_PUBLIC_HOST_URL=
+NEXT_PUBLIC_MAILER_EMAIL=
+NEXT_PUBLIC_MAILER_PASSWORD=
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Reevo
+5. Run the development server:
+
+```bash
+bun run dev
+```
+
+## 📱 Desktop Application
+
+To record videos with Reevo, you'll need to install our desktop application. The desktop app provides:
+
+- Screen recording
+- Webcam recording
+- Audio capture
+- Custom recording presets
+- Direct upload to your workspace
+
+Get the desktop app from [Reevo Desktop](https://github.com/yourusername/reevo-desktop)
+
+## 🔒 Security
+
+- Enterprise-grade encryption
+- Secure data handling
+- Authentication via Clerk
+- HTTPS/SSL encryption
+
+## 💳 Pricing
+
+### Free Plan
+
+- Basic recording features
+- Limited storage
+- Personal workspace
+
+### Pro Plan ($99/month)
+
+- Unlimited recordings
+- AI features
+- Priority support
+- Team collaboration
+- Custom branding
+
+## 🤝 Contributing
+
+We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting a pull request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Next.js](https://nextjs.org/)
+- [Clerk](https://clerk.dev/)
+- [Prisma](https://www.prisma.io/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Stripe](https://stripe.com/)
+
+## 📞 Support
+
+For support, email zubayer.munna.dev@gmail.com.
+
+---
+
+Built with ❤️ by [Abu Jobayer](https://github.com/abujobayer0)

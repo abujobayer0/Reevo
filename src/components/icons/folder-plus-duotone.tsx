@@ -1,6 +1,4 @@
-type Props = {}
-
-const FolderPlusDuotine = (props: Props) => {
+const FolderPlusDuotine = () => {
   return (
     <svg
       width="24"
@@ -18,7 +16,7 @@ const FolderPlusDuotine = (props: Props) => {
         fill="#545454"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default FolderPlusDuotine
+export default FolderPlusDuotine;

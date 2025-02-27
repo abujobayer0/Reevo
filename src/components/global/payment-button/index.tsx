@@ -4,9 +4,7 @@ import React from "react";
 import Loader from "../loader";
 import { useSubscription } from "@/hooks/useSubscription";
 
-type Props = {};
-
-const PaymentButton = (props: Props) => {
+const PaymentButton = () => {
   const { onSubscribe, isProcessing } = useSubscription();
 
   return (

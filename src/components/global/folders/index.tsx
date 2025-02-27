@@ -41,6 +41,7 @@ const Folders = ({ workspaceId }: Props) => {
   if (isFetched && folders) {
     dispatch(FOLDERS({ folders: folders }));
   }
+
   return (
     <div className="flex flex-col gap-4" suppressHydrationWarning>
       <div className="flex items-center  justify-between">

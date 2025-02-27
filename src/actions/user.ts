@@ -96,7 +96,7 @@ export const onAuthenticatedUser = async () => {
       return { status: 201, user: newUser };
     }
     return { status: 404 };
-  } catch (error) {
+  } catch (_) {
     return { status: 500 };
   }
 };
@@ -124,7 +124,7 @@ export const getNotifications = async () => {
       return { status: 200, data: notifications };
     }
     return { status: 404, data: [] };
-  } catch (err) {
+  } catch (_) {
     return { status: 403 };
   }
 };
@@ -164,7 +164,7 @@ export const searchUsers = async (query: string) => {
       return { status: 200, data: users };
     }
     return { status: 404, data: undefined };
-  } catch (err) {
+  } catch (_) {
     return { status: 404, data: undefined };
   }
 };
@@ -186,7 +186,7 @@ export const getVideoComments = async (Id: string) => {
     });
 
     return { status: 200, data: comments };
-  } catch (error) {
+  } catch (_) {
     return { status: 400 };
   }
 };
@@ -232,7 +232,7 @@ export const createCommentAndReply = async (
       },
     });
     if (newComment) return { status: 200, data: "New comment added" };
-  } catch (error) {
+  } catch (_) {
     return { status: 400 };
   }
 };
@@ -252,7 +252,7 @@ export const getUserProfile = async () => {
     });
 
     if (profileIdAndImage) return { status: 200, data: profileIdAndImage };
-  } catch (error) {
+  } catch (_) {
     return { status: 400 };
   }
 };
@@ -275,7 +275,7 @@ export const getPaymentInfo = async () => {
     if (payment) {
       return { status: 200, data: payment };
     }
-  } catch (error) {
+  } catch (_) {
     return { status: 400 };
   }
 };
@@ -295,7 +295,7 @@ export const getFirstView = async () => {
       return { status: 200, data: userData.firstView };
     }
     return { status: 400, data: false };
-  } catch (error) {
+  } catch (_) {
     return { status: 400 };
   }
 };
@@ -317,7 +317,7 @@ export const enableFirstView = async (state: boolean) => {
     if (view) {
       return { status: 200, data: "Setting updated" };
     }
-  } catch (error) {
+  } catch (_) {
     return { status: 400 };
   }
 };
@@ -513,7 +513,7 @@ export const acceptInvite = async (inviteId: string) => {
       return { status: 200, data: "Invite accepted" };
     }
     return { status: 400, data: "Invite not accepted" };
-  } catch (error) {
+  } catch (_) {
     return { status: 400 };
   }
 };
@@ -545,7 +545,7 @@ export const completeSubscription = async (session_id: string) => {
       }
     }
     return { status: 404 };
-  } catch (error) {
+  } catch (_) {
     return { status: 400 };
   }
 };

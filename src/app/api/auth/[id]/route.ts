@@ -1,13 +1,14 @@
+"use server";
 import { client } from "@/lib/prisma";
 import { clerkClient } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-  req: NextRequest,
-  { params: { id } }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: { id: string } }
 ) {
-  console.log("Enpoint hit ✅");
-
+  console.log("Endpoint hit ✅");
+  const { id } = context.params;
   try {
     const userProfile = await client.user.findUnique({
       where: {
@@ -60,5 +61,6 @@ export async function GET(
     return NextResponse.json({ status: 400 });
   } catch (error) {
     console.log("ERROR", error);
+    return NextResponse.json({ status: 500, error: "Internal Server Error" });
   }
 }

@@ -7,9 +7,7 @@ import { useQueryData } from "@/hooks/useQueryData";
 import FolderPlusDuotine from "@/components/icons/folder-plus-duotone";
 import WorkspaceForm from "@/components/forms/workspace-form";
 
-type Props = {};
-
-const CreateWorkspace = (props: Props) => {
+const CreateWorkspace = () => {
   const { data } = useQueryData(["user-workspaces"], getWorkSpaces);
 
   const { data: plan } = data as {

@@ -5,9 +5,7 @@ import { UserButton } from "@clerk/nextjs";
 import { Search, UploadIcon } from "lucide-react";
 import React from "react";
 
-type Props = {};
-
-const InfoBar = (props: Props) => {
+const InfoBar = () => {
   return (
     <header className="pl-20 md:pl-[265px] backdrop-blur-lg !z-10 bg-black/0 fixed p-4 w-full flex items-center justify-between gap-4">
       <div className="flex gap-4 justify-center items-center border-2 rounded-full px-4 w-full max-w-lg bg-white/20 backdrop-blur-md">
@@ -22,10 +20,10 @@ const InfoBar = (props: Props) => {
           <UploadIcon size={20} />{" "}
           <span className="flex items-center gap-2">Upload</span>
         </Button>
-        <Button className="bg-[#9D9D9D] flex items-center gap-2 hover:bg-[#6d6d6d] transition duration-200">
+        {/* <Button className="bg-[#9D9D9D] flex items-center gap-2 hover:bg-[#6d6d6d] transition duration-200">
           <VideoRecorderIcon />
           <span className="flex items-center gap-2">Record</span>
-        </Button>
+        </Button> */}
         <UserButton />
       </div>
     </header>
