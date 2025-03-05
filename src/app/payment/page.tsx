@@ -2,11 +2,7 @@ import { completeSubscription } from "@/actions/user";
 import { redirect } from "next/navigation";
 import React from "react";
 
-type Props = {
-  searchParams: { session_id?: string; cancel?: boolean };
-};
-
-const page = async ({ searchParams: { cancel, session_id } }: Props) => {
+const page = async ({ searchParams: { cancel, session_id } }: any) => {
   if (session_id) {
     const customer = await completeSubscription(session_id);
     if (customer.status === 200) {

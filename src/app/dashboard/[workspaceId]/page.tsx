@@ -1,9 +1,4 @@
-import { getNotifications } from "@/actions/user";
-import {
-  getAllUserVideos,
-  getWorkspaceFolders,
-  getWorkSpaces,
-} from "@/actions/workspace";
+import { getAllUserVideos, getWorkspaceFolders } from "@/actions/workspace";
 import CreateForlders from "@/components/global/create-folders";
 import CreateWorkspace from "@/components/global/create-workspace";
 import Folders from "@/components/global/folders";
@@ -17,11 +12,7 @@ import {
 
 import React from "react";
 
-type Props = {
-  params: { workspaceId: string };
-};
-
-const Page = async ({ params: { workspaceId } }: Props) => {
+const Page = async ({ params: { workspaceId } }: any) => {
   const query = new QueryClient();
 
   await query.prefetchQuery({

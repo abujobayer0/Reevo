@@ -8,9 +8,7 @@ import {
 } from "@tanstack/react-query";
 import React from "react";
 
-type Props = { params: { folderId: string; workspaceId: string } };
-
-const Page = async (props: Props) => {
+const Page = async (props: any) => {
   const { folderId, workspaceId } = props.params;
   const query = new QueryClient();
 

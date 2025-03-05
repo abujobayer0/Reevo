@@ -8,9 +8,7 @@ import {
 } from "@tanstack/react-query";
 import React from "react";
 
-type Props = { params: { videoId: string } };
-
-const Page = async (props: Props) => {
+const Page = async (props: any) => {
   const query = new QueryClient();
   await query.prefetchQuery({
     queryKey: ["preview-video", props.params.videoId],
